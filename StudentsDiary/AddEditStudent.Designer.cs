@@ -241,8 +241,11 @@
             this.Controls.Add(this.lbFirstName);
             this.Controls.Add(this.tbId);
             this.Controls.Add(this.lbId);
+            this.MaximumSize = new System.Drawing.Size(374, 489);
+            this.MinimumSize = new System.Drawing.Size(374, 489);
             this.Name = "AddEditStudent";
-            this.Text = "AddEditStudent";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Dodawanie ucznia";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,41 +1,32 @@
-using System.Xml.Serialization;
-
 namespace StudentsDiary;
 
 public partial class Main : Form
 {
-    string _filePath =
-        Path.Combine(Environment.CurrentDirectory, "students.txt");
+    FileHelper<List<Student>> _fileHelper = 
+        new FileHelper<List<Student>>(Program.FilePath);
     public Main()
     {
         InitializeComponent();
-        var students = DeserializeFromFile();
+        RefreshDiary();
+        SetColumnsHeader();
+    }
+
+    void RefreshDiary()
+    {
+        var students = _fileHelper.DeserializeFromFile();
         dgvDiary.DataSource = students;
-        
     }
-
-    public void SerializeToFile(List<Student> students)
+    void SetColumnsHeader()
     {
-        var serializer = new XmlSerializer(typeof(List<Student>));
-        using (var streamWriter = new StreamWriter(_filePath))
-        {
-            serializer.Serialize(streamWriter, students);
-            streamWriter.Close();
-        }
-    }
-
-    public List<Student> DeserializeFromFile()
-    {
-        if (!File.Exists(_filePath))
-            return new List<Student>();
-
-        var serializer = new XmlSerializer(typeof(List<Student>));
-        using (var streamReader = new StreamReader(_filePath))
-        {
-            var students = (List<Student>)serializer.Deserialize(streamReader);
-            streamReader.Close();
-            return students;
-        }
+        dgvDiary.Columns[0].HeaderText = "Numer";
+        dgvDiary.Columns[1].HeaderText = "Imie";
+        dgvDiary.Columns[2].HeaderText = "Nazwisko";
+        dgvDiary.Columns[3].HeaderText = "Uwagi";
+        dgvDiary.Columns[4].HeaderText = "Matematyka";
+        dgvDiary.Columns[5].HeaderText = "Technologia";
+        dgvDiary.Columns[6].HeaderText = "Fizyka";
+        dgvDiary.Columns[7].HeaderText = "Jêzyk polski";
+        dgvDiary.Columns[8].HeaderText = "Jêzyk obcy";
     }
 
     private void btnAdd_Click(object sender, EventArgs e)
@@ -57,7 +48,6 @@ public partial class Main : Form
 
     }
 
-
     private void btnDelete_Click(object sender, EventArgs e)
     {
         if (dgvDiary.SelectedRows.Count == 0)
@@ -74,16 +64,20 @@ public partial class Main : Form
             MessageBoxButtons.OKCancel);
         if (confirmDelete == DialogResult.OK)
         {
-            var students = DeserializeFromFile();
-            students.RemoveAll(x => x.Id == Convert.ToInt32(dgvDiary.SelectedRows[0].Cells[0].Value));
-            SerializeToFile(students);
-            dgvDiary.DataSource = students;
+            DeleteStudent(Convert.ToInt32(dgvDiary.SelectedRows[0].Cells[0].Value));
+            RefreshDiary();
         }
+    }
+
+    void DeleteStudent(int id)
+    {
+        var students = _fileHelper.DeserializeFromFile();
+        students.RemoveAll(x => x.Id == id);
+        _fileHelper.SerializeToFile(students);
     }
 
     private void btnRefreshe_Click(object sender, EventArgs e)
     {
-        var students = DeserializeFromFile();
-        dgvDiary.DataSource = students;
+        RefreshDiary();
     }
 }
