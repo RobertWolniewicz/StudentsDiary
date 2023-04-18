@@ -9,6 +9,9 @@ public partial class Main : Form
     public Main()
     {
         InitializeComponent();
+        var students = DeserializeFromFile();
+        dgvDiary.DataSource = students;
+        
     }
 
     public void SerializeToFile(List<Student> students)
@@ -37,21 +40,50 @@ public partial class Main : Form
 
     private void btnAdd_Click(object sender, EventArgs e)
     {
-
+        var addEditStudent = new AddEditStudent();
+        addEditStudent.ShowDialog();
     }
 
     private void btnEdit_Click(object sender, EventArgs e)
     {
+        if(dgvDiary.SelectedRows.Count == 0)
+        {
+            MessageBox.Show("Proszê zaznacz ucznia, którego dane chcesz edytowaæ");
+            return;
+        }
+        
+        var addEditStudent = new AddEditStudent(Convert.ToInt32(dgvDiary.SelectedRows[0].Cells[0].Value));
+        addEditStudent.ShowDialog();
 
     }
 
+
     private void btnDelete_Click(object sender, EventArgs e)
     {
+        if (dgvDiary.SelectedRows.Count == 0)
+        {
+            MessageBox.Show("Proszê zaznacz ucznia, którego dane chcesz usun¹æ");
+            return;
+        }
 
+        var selectedStudent = dgvDiary.SelectedRows[0];
+
+       var confirmDelete =  MessageBox.Show($"Czy napewno chcesz usun¹æ ucznia " +
+            $"{(selectedStudent.Cells[1].Value.ToString() + " " + selectedStudent.Cells[2].Value.ToString()).Trim()}", 
+            "Usuwanie Ucznia", 
+            MessageBoxButtons.OKCancel);
+        if (confirmDelete == DialogResult.OK)
+        {
+            var students = DeserializeFromFile();
+            students.RemoveAll(x => x.Id == Convert.ToInt32(dgvDiary.SelectedRows[0].Cells[0].Value));
+            SerializeToFile(students);
+            dgvDiary.DataSource = students;
+        }
     }
 
     private void btnRefreshe_Click(object sender, EventArgs e)
     {
-
+        var students = DeserializeFromFile();
+        dgvDiary.DataSource = students;
     }
 }

@@ -47,7 +47,7 @@
             this.rtbComents = new System.Windows.Forms.RichTextBox();
             this.lbComments = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnConfirm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbId
@@ -121,7 +121,6 @@
             this.tbPhysics.Name = "tbPhysics";
             this.tbPhysics.Size = new System.Drawing.Size(186, 23);
             this.tbPhysics.TabIndex = 9;
-            this.tbPhysics.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // lbPhysics
             // 
@@ -205,22 +204,24 @@
             this.btnCancel.TabIndex = 18;
             this.btnCancel.Text = "Anuluj";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnAdd
+            // btnConfirm
             // 
-            this.btnAdd.Location = new System.Drawing.Point(208, 346);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(88, 31);
-            this.btnAdd.TabIndex = 19;
-            this.btnAdd.Text = "Zapisz";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnConfirm.Location = new System.Drawing.Point(208, 346);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(88, 31);
+            this.btnConfirm.TabIndex = 19;
+            this.btnConfirm.Text = "Zatwierdź";
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // AddEditStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 450);
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lbComments);
             this.Controls.Add(this.rtbComents);
@@ -268,6 +269,6 @@
         private RichTextBox rtbComents;
         private Label lbComments;
         private Button btnCancel;
-        private Button btnAdd;
+        private Button btnConfirm;
     }
 }
