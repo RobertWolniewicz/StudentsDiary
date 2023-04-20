@@ -5,6 +5,9 @@ namespace StudentsDiary
 
     public partial class AddEditStudent : Form
     {
+
+      
+
         int _studentId;
         Student _student;
 

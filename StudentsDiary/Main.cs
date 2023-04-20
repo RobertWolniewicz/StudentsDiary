@@ -32,7 +32,13 @@ public partial class Main : Form
     private void btnAdd_Click(object sender, EventArgs e)
     {
         var addEditStudent = new AddEditStudent();
-        addEditStudent.ShowDialog();
+        addEditStudent.FormClosing += AddEditStudent_FormClosing;
+        addEditStudent.ShowDialog(); 
+    }
+
+    private void AddEditStudent_FormClosing(object? sender, FormClosingEventArgs e)
+    {
+        RefreshDiary();
     }
 
     private void btnEdit_Click(object sender, EventArgs e)
@@ -44,6 +50,7 @@ public partial class Main : Form
         }
         
         var addEditStudent = new AddEditStudent(Convert.ToInt32(dgvDiary.SelectedRows[0].Cells[0].Value));
+        addEditStudent.FormClosing += AddEditStudent_FormClosing;
         addEditStudent.ShowDialog();
 
     }
