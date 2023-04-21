@@ -48,6 +48,9 @@
             this.lbComments = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
+            this.cbActivities = new System.Windows.Forms.CheckBox();
+            this.combGroup = new System.Windows.Forms.ComboBox();
+            this.lbGroup = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbId
@@ -181,7 +184,7 @@
             // 
             // rtbComents
             // 
-            this.rtbComents.Location = new System.Drawing.Point(110, 244);
+            this.rtbComents.Location = new System.Drawing.Point(110, 273);
             this.rtbComents.Name = "rtbComents";
             this.rtbComents.Size = new System.Drawing.Size(186, 96);
             this.rtbComents.TabIndex = 16;
@@ -190,7 +193,7 @@
             // lbComments
             // 
             this.lbComments.AutoSize = true;
-            this.lbComments.Location = new System.Drawing.Point(12, 244);
+            this.lbComments.Location = new System.Drawing.Point(12, 276);
             this.lbComments.Name = "lbComments";
             this.lbComments.Size = new System.Drawing.Size(40, 15);
             this.lbComments.TabIndex = 17;
@@ -198,7 +201,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(110, 346);
+            this.btnCancel.Location = new System.Drawing.Point(110, 400);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(82, 31);
             this.btnCancel.TabIndex = 18;
@@ -208,7 +211,7 @@
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(208, 346);
+            this.btnConfirm.Location = new System.Drawing.Point(208, 400);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(88, 31);
             this.btnConfirm.TabIndex = 19;
@@ -216,11 +219,42 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
+            // cbActivities
+            // 
+            this.cbActivities.AutoSize = true;
+            this.cbActivities.Location = new System.Drawing.Point(110, 375);
+            this.cbActivities.Name = "cbActivities";
+            this.cbActivities.Size = new System.Drawing.Size(125, 19);
+            this.cbActivities.TabIndex = 20;
+            this.cbActivities.Text = "Zajęcia dodatkowe";
+            this.cbActivities.UseVisualStyleBackColor = true;
+            // 
+            // combGroup
+            // 
+            this.combGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combGroup.FormattingEnabled = true;
+            this.combGroup.Location = new System.Drawing.Point(110, 244);
+            this.combGroup.Name = "combGroup";
+            this.combGroup.Size = new System.Drawing.Size(186, 23);
+            this.combGroup.TabIndex = 21;
+            // 
+            // lbGroup
+            // 
+            this.lbGroup.AutoSize = true;
+            this.lbGroup.Location = new System.Drawing.Point(13, 244);
+            this.lbGroup.Name = "lbGroup";
+            this.lbGroup.Size = new System.Drawing.Size(39, 15);
+            this.lbGroup.TabIndex = 22;
+            this.lbGroup.Text = "Grupa";
+            // 
             // AddEditStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(358, 450);
+            this.Controls.Add(this.lbGroup);
+            this.Controls.Add(this.combGroup);
+            this.Controls.Add(this.cbActivities);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lbComments);
@@ -273,5 +307,8 @@
         private Label lbComments;
         private Button btnCancel;
         private Button btnConfirm;
+        private CheckBox cbActivities;
+        private ComboBox combGroup;
+        private Label lbGroup;
     }
 }

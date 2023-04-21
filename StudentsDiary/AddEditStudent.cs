@@ -5,9 +5,6 @@ namespace StudentsDiary
 
     public partial class AddEditStudent : Form
     {
-
-      
-
         int _studentId;
         Student _student;
 
@@ -17,7 +14,8 @@ namespace StudentsDiary
         public AddEditStudent(int id = 0)
         {
             InitializeComponent();
-
+            
+            combGroup.Items.AddRange(Enum.GetValues(typeof(Group)).Cast<object>().ToArray());
             _studentId = id;
             GetStudentData();
             tbFirstName.Select();
@@ -35,11 +33,11 @@ namespace StudentsDiary
                 if (_student == null)
                     throw new Exception("Brak uzytkownika o podanym Id");
 
-                FillTextBoxes();
+                FillBoxes();
             }
         }
 
-        void FillTextBoxes()
+        void FillBoxes()
         {
             tbId.Text = _student.Id.ToString();
             tbFirstName.Text = _student.FirstName;
@@ -50,6 +48,8 @@ namespace StudentsDiary
             rtbComents.Text = _student.Comments;
             tbPolishLang.Text = _student.PolishLang;
             tbForeingLang.Text = _student.ForeingLang;
+            cbActivities.Checked = _student.Activities;
+            combGroup.SelectedItem = _student.Group;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -72,6 +72,12 @@ namespace StudentsDiary
 
         void AddNewUserToList(List<Student> students)
         {
+            if (combGroup.SelectedItem == null)
+            {
+                MessageBox.Show("Prosze wybrac grupę");
+                return;
+            }
+
             var student = new Student
             {
                 Id = _studentId,
@@ -83,6 +89,8 @@ namespace StudentsDiary
                 Comments = rtbComents.Text,
                 PolishLang = tbPolishLang.Text,
                 ForeingLang = tbForeingLang.Text,
+                Activities = cbActivities.Checked,
+                Group = (Group)combGroup.SelectedItem
             };
             students.Add(student);
         }

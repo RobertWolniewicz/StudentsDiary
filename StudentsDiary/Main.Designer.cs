@@ -33,6 +33,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRefreshe = new System.Windows.Forms.Button();
             this.dgvDiary = new System.Windows.Forms.DataGridView();
+            this.combGroup = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiary)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,12 +97,22 @@
             this.dgvDiary.Size = new System.Drawing.Size(953, 397);
             this.dgvDiary.TabIndex = 4;
             // 
+            // combGroup
+            // 
+            this.combGroup.FormattingEnabled = true;
+            this.combGroup.Location = new System.Drawing.Point(336, 13);
+            this.combGroup.Name = "combGroup";
+            this.combGroup.Size = new System.Drawing.Size(121, 23);
+            this.combGroup.TabIndex = 5;
+            this.combGroup.SelectedIndexChanged += new System.EventHandler(this.combGroup_SelectedIndexChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(991, 450);
+            this.Controls.Add(this.combGroup);
             this.Controls.Add(this.dgvDiary);
             this.Controls.Add(this.btnRefreshe);
             this.Controls.Add(this.btnDelete);
@@ -109,6 +120,7 @@
             this.Controls.Add(this.btnAdd);
             this.Name = "Main";
             this.Text = "Dziennik ucznia";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiary)).EndInit();
             this.ResumeLayout(false);
 
@@ -121,5 +133,6 @@
         private Button btnDelete;
         private Button btnRefreshe;
         private DataGridView dgvDiary;
+        private ComboBox combGroup;
     }
 }
