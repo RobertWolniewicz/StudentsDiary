@@ -40,7 +40,7 @@ public partial class Main : Form
         if (combGroup.SelectedItem.ToString() != "Wszyscy")
             students = students.Where(x => x.Group.ToString() == combGroup.SelectedItem.ToString()).ToList();
 
-        students.OrderBy(x => x.Id);
+        students = students.OrderBy(x => x.Id).ToList();
         dgvDiary.DataSource = students;
     }
     void SetColumnsHeader()
