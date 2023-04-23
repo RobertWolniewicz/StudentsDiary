@@ -77,7 +77,7 @@
             this.btnRefreshe.Name = "btnRefreshe";
             this.btnRefreshe.Size = new System.Drawing.Size(75, 23);
             this.btnRefreshe.TabIndex = 3;
-            this.btnRefreshe.Text = "Odświerz";
+            this.btnRefreshe.Text = "Odśwież";
             this.btnRefreshe.UseVisualStyleBackColor = false;
             this.btnRefreshe.Click += new System.EventHandler(this.btnRefreshe_Click);
             // 
